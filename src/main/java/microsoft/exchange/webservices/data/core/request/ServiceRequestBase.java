@@ -367,7 +367,7 @@ public abstract class ServiceRequestBase<T> {
   protected T readResponse(HttpWebRequest response) throws Exception {
     T serviceResponse;
 
-    if (!response.getResponseContentType().startsWith("text/xml")) {
+    if (response.getResponseContentType() == null || !response.getResponseContentType().startsWith("text/xml")) {
       throw new ServiceRequestException("The response received from the service didn't contain valid XML.");
     }
 
